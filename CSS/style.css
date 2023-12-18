@@ -37,6 +37,7 @@ h1 {
     font-family: var(--ff-lato);
     font-size: 1.85rem;
     font-weight: 300;
+    text-align: center;
 }
 
 .form-box {
@@ -132,3 +133,4 @@ button:not(:hover) {
 .valid {
     color:green;
 }
+

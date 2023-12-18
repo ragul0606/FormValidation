@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Create Account</h1>
+        <h1 id="heading">Create Account</h1>
         <form action="/form" autocomplete="off" id="frm">
             <div class="form-box">
                 <label for="name">Full Name</label>
@@ -69,7 +69,8 @@
         $(document).ready(function(){
             $.validator.setDefaults({
                 submitHandler: function() {
-                    alert("Submitted");
+                    $("#frm").css("display", "none");
+                    $("#heading").html("Form submitted <br><b>Successfully</b>");
                 }
             })
             $("#frm").validate({
