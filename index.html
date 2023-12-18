@@ -20,7 +20,7 @@
             </div>
             <div class="form-box">
                 <label for="username">Define User Name</label>
-                <input type="text" name="username" id="username" placeholder="Enter a unique username">
+                <input type="text" name="username" id="username" placeholder="Enter a unique username" pattern="[A-Za-z0-9\w]{4,20}">
             </div>
             <div class="form-box">
                 <label for="email">Your e-mail ID</label>
@@ -76,7 +76,10 @@
             $("#frm").validate({
                 rules: {
                     name: "required",
-                    username: "required",
+                    username: {
+                        required:true,
+                        minlength:6,
+                    },
                     email: {
                         required:true,
                         email:true
@@ -89,7 +92,6 @@
                     },
                     dob: "required",
                     gender: "required",
-                    textbox: "required",
                     pass: {
                         required:true,
                         minlength:5,
@@ -103,7 +105,10 @@
                 },
                 messages: {
                     name: "Please enter your name",
-                    username: "Please enter a unique username",
+                    username: {
+                        required: "Please enter a unique username",
+                        minlength: "Username must be at-least 6 character"
+                    },
                     email: {
                         required: "Please enter your email",
                         email:"Please enter a valid email ID"
@@ -116,7 +121,6 @@
                     },
                     dob: "Please enter your DOB",
                     gender: "Please select your gender",
-                    textbox: "Please write something about you",
                     pass: {
                         required:"Please enter your password",
                         minlength:"Password length must be 5 char"
