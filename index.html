@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="shortcut icon" href="./CSS/favaicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <form action="/form" autocomplete="off" id="frm">
+            <div class="form-box">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your full name">
+            </div>
+            <div class="form-box">
+                <label for="username">Define User Name</label>
+                <input type="text" name="username" id="username" placeholder="Enter a unique username">
+            </div>
+            <div class="form-box">
+                <label for="email">Your e-mail ID</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-box">
+                <label for="phoneno">Mobile Number</label>
+                <input type="number" name="phoneno" id="phoneno" placeholder="Your phone number">
+            </div>
+            <div class="form-box">
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob" placeholder="DD-MM-YYYY">
+            </div>
+            <div class="form-box">
+                <label for="gender">Your Gender</label>
+                <select name="gender" id="gender">
+                    <option value="">Select Your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-box">
+                <label for="textbox">Something about yourself</label>
+                <textarea placeholder="Something about yourself" name="textbox" id="textbox" cols="20" rows="10"></textarea>
+            </div>
+            <div class="form-box">
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="Enter a unique and strong password">
+            </div>
+            <div class="form-box">
+                <label for="cpass">Confirm Password</label>
+                <input type="text" name="cpass" id="cpass" placeholder="Retype password">
+            </div>
+            <div class="checked">
+                <input type="checkbox" name="check" id="check">
+                <p>I agree to the Terms and Conditions (TAC).</p>
+            </div>
+            <div class="btn">
+                <button id="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script src="./jQueryPlugIn/jquery.js"></script>
+    <script src="./jQueryPlugIn/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.validator.setDefaults({
+                submitHandler: function() {
+                    alert("Submitted");
+                }
+            })
+            $("#frm").validate({
+                rules: {
+                    name: "required",
+                    username: "required",
+                    email: {
+                        required:true,
+                        email:true
+                    },
+                    phoneno: {
+                        required:true,
+                        number:true,
+                        maxlength:10,
+                        minlength:10
+                    },
+                    dob: "required",
+                    gender: "required",
+                    textbox: "required",
+                    pass: {
+                        required:true,
+                        minlength:5,
+                    },
+                    cpass:{
+                        required:true,
+                        minlength:5,
+                        equalTo:"#pass"
+                    },
+                    check:"required"
+                },
+                messages: {
+                    name: "Please enter your name",
+                    username: "Please enter a unique username",
+                    email: {
+                        required: "Please enter your email",
+                        email:"Please enter a valid email ID"
+                    },
+                    phoneno: {
+                        required:"Please enter your phone number",
+                        number:"Please enter a valid phone number",
+                        maxlength:"Length doesn't match",
+                        minlength:"Length doesn't match",
+                    },
+                    dob: "Please enter your DOB",
+                    gender: "Please select your gender",
+                    textbox: "Please write something about you",
+                    pass: {
+                        required:"Please enter your password",
+                        minlength:"Password length must be 5 char"
+                    },
+                    cpass:{
+                        required:"Please enter your confirm password",
+                        minlength:"Password length must be 5 char",
+                        equalTo:"Password mismatch"
+                    },
+                    check:"Please agree to our T&C"
+                }
+            });
+        })
+    </script>
+</body>
+</html>
